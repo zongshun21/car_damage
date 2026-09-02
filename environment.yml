@@ -1,0 +1,8 @@
+name: car_damage_yolo26
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+
+

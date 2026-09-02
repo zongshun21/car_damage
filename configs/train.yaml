@@ -1,0 +1,35 @@
+model: yolo26s.pt
+data: configs/data.yaml
+epochs: 150
+patience: 30
+imgsz: 640
+batch: -1
+device: 0
+workers: 4
+seed: 42
+amp: true
+pretrained: true
+project: runs/car_damage
+name: yolo26s_640
+exist_ok: false
+cache: false
+save: true
+save_period: 10
+plots: true
+
+# Conservative augmentation for subtle dents, cracks, and scratches.
+hsv_h: 0.01
+hsv_s: 0.35
+hsv_v: 0.25
+degrees: 5.0
+translate: 0.05
+scale: 0.20
+shear: 0.0
+perspective: 0.0
+flipud: 0.0
+fliplr: 0.5
+mosaic: 0.20
+mixup: 0.0
+close_mosaic: 10
+
+

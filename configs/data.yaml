@@ -1,0 +1,12 @@
+# Portable project-relative dataset descriptor.
+# Project scripts resolve this path and generate an absolute runtime YAML for Ultralytics.
+path: ../车损车身数据集
+train: train/images
+val: val/images
+
+names:
+  0: dent
+  1: crack
+  2: scratch
+
+

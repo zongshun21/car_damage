@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "car-damage-yolo26"
+version = "0.1.0"
+description = "YOLO26s training and inference utilities for car body damage detection"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "ultralytics==8.4.115",
+  "PyYAML>=6.0.2,<7",
+  "Pillow>=10.4,<13",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<10"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+
