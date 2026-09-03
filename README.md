@@ -8,7 +8,7 @@
 
 ![GUI 平台](assets/gui_platform.png)
 
-![中文检测结果](assets/chinese_detection_result.jpg)
+![中文检测结果](assets/用户附件.png)
 
 ## 1. 这个仓库适合谁
 
