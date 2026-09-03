@@ -12,7 +12,18 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
 
 
-@pytest.mark.parametrize("script", ["check_dataset.py", "train.py", "validate.py", "predict.py"])
+@pytest.mark.parametrize(
+    "script",
+    [
+        "build_balanced_dataset.py",
+        "build_two_class_dataset.py",
+        "check_dataset.py",
+        "gui.py",
+        "train.py",
+        "validate.py",
+        "predict.py",
+    ],
+)
 def test_help_works(script: str) -> None:
     result = subprocess.run(
         [sys.executable, str(SCRIPTS / script), "--help"],
@@ -53,5 +64,3 @@ def test_predict_rejects_missing_weights(capsys) -> None:
     predict = _load_script("predict.py")
     assert predict.main(["--weights", "missing.pt", "--source", "missing.jpg"]) == 2
     assert "权重不存在" in capsys.readouterr().err
-
-

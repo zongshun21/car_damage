@@ -37,10 +37,34 @@ def test_runtime_yaml_uses_absolute_dataset_path(tmp_path: Path) -> None:
     assert "train/images" in text
 
 
+def test_runtime_yaml_allows_validation_outside_dataset_root(tmp_path: Path) -> None:
+    train_root = tmp_path / "balanced"
+    validation = tmp_path / "original" / "val" / "images"
+    (train_root / "train" / "images").mkdir(parents=True)
+    validation.mkdir(parents=True)
+    config = tmp_path / "data.yaml"
+    config.write_text(
+        "\n".join(
+            [
+                f"path: {train_root.as_posix()}",
+                "train: train/images",
+                f"val: {validation.as_posix()}",
+                "names:",
+                "  0: defect",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    output = tmp_path / "runtime.yaml"
+
+    prepare_runtime_data_yaml(config, output)
+
+    text = output.read_text(encoding="utf-8")
+    assert f"val: {validation.as_posix()}" in text
+
+
 def test_invalid_yaml_shape_raises(tmp_path: Path) -> None:
     config = tmp_path / "invalid.yaml"
     config.write_text("- item\n", encoding="utf-8")
     with pytest.raises(ConfigError):
         load_dataset_config(config)
-
-

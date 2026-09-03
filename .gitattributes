@@ -1,0 +1,4 @@
+models/*.pt binary
+models/weights_parts/* binary
+assets/*.png binary
+assets/*.jpg binary

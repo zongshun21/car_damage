@@ -78,10 +78,16 @@ def prepare_runtime_data_yaml(
     config = load_dataset_config(path)
     output_path = resolve_project_path(output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    def runtime_split(path: Path) -> str:
+        try:
+            return path.relative_to(config.dataset_root).as_posix()
+        except ValueError:
+            return path.as_posix()
+
     payload = {
         "path": config.dataset_root.as_posix(),
-        "train": config.train_images.relative_to(config.dataset_root).as_posix(),
-        "val": config.val_images.relative_to(config.dataset_root).as_posix(),
+        "train": runtime_split(config.train_images),
+        "val": runtime_split(config.val_images),
         "names": config.names,
     }
     output_path.write_text(
@@ -118,5 +124,3 @@ def load_train_config(path: str | Path = "configs/train.yaml") -> dict[str, Any]
 
 def project_root() -> Path:
     return PROJECT_ROOT
-
-

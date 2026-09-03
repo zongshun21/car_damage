@@ -40,10 +40,10 @@ try {
         "https://download.pytorch.org/whl/cpu"
     }
     else {
-        "https://download.pytorch.org/whl/cu128"
+        "https://download.pytorch.org/whl/cu124"
     }
     Write-Host "安装 PyTorch: $TorchIndex"
-    conda run -n $EnvName python -m pip install torch==2.11.0 torchvision==0.26.0 --index-url $TorchIndex
+    conda run -n $EnvName python -m pip install torch==2.5.1 torchvision==0.20.1 --index-url $TorchIndex
     if ($LASTEXITCODE -ne 0) { throw "PyTorch 安装失败" }
 
     conda run -n $EnvName python -m pip install -e "$ProjectRoot[dev]"
@@ -63,5 +63,3 @@ finally {
         $env:PIP_CONFIG_FILE = $PreviousPipConfig
     }
 }
-
-

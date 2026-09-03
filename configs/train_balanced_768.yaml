@@ -1,0 +1,43 @@
+model: runs/car_damage/yolo26s_640/weights/best.pt
+data: configs/data_balanced.yaml
+epochs: 80
+patience: 20
+imgsz: 768
+batch: 32
+device: 0
+workers: 0
+seed: 42
+amp: true
+pretrained: true
+project: runs/car_damage
+name: yolo26s_crack_balanced_768
+exist_ok: false
+cache: false
+save: true
+save_period: 10
+plots: true
+
+# Fine-tune conservatively from the best 640px checkpoint.
+optimizer: AdamW
+lr0: 0.001
+lrf: 0.05
+cos_lr: true
+weight_decay: 0.0005
+warmup_epochs: 2.0
+warmup_momentum: 0.8
+warmup_bias_lr: 0.05
+
+# Retain detail in small cracks while avoiding unrealistic composites.
+hsv_h: 0.01
+hsv_s: 0.30
+hsv_v: 0.20
+degrees: 4.0
+translate: 0.04
+scale: 0.15
+shear: 0.0
+perspective: 0.0
+flipud: 0.0
+fliplr: 0.5
+mosaic: 0.35
+mixup: 0.0
+close_mosaic: 15

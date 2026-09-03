@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "id": "yolo26s-two-class",
+      "display_name": "YOLO26s-两分类车损检测",
+      "filename": "YOLO26s_DentScratch_mAP50_73.18.pt",
+      "classes": ["dent", "scratch"],
+      "map50": 0.7318,
+      "precision": 0.8915,
+      "imgsz": 768,
+      "description": "推荐模型：凹陷、划痕检测",
+      "builtin": true
+    },
+    {
+      "id": "yolo26s-three-class",
+      "display_name": "YOLO26s-三分类车损检测",
+      "filename": "YOLO26s_DentCrackScratch_mAP50_53.10.pt",
+      "classes": ["dent", "crack", "scratch"],
+      "map50": 0.531,
+      "precision": 0.6937,
+      "imgsz": 768,
+      "description": "实验模型：凹陷、裂纹、划痕检测",
+      "builtin": true
+    }
+  ]
+}

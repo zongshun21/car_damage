@@ -1,0 +1,8 @@
+path: ../.runtime/balanced_dataset
+train: train/images
+val: ../../车损车身数据集/val/images
+
+names:
+  0: dent
+  1: crack
+  2: scratch

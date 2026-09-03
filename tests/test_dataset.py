@@ -13,4 +13,3 @@ def test_current_dataset_passes_full_validation() -> None:
     assert val.class_counts == {0: 1355, 1: 206, 2: 482}
     assert len(train.warnings) == 3
     assert not val.warnings
-

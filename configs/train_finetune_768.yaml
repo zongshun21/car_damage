@@ -1,0 +1,44 @@
+model: runs/car_damage/yolo26s_640/weights/best.pt
+data: configs/data_balanced_f2.yaml
+epochs: 50
+patience: 12
+imgsz: 768
+batch: 32
+device: 0
+workers: 0
+seed: 42
+amp: true
+pretrained: true
+project: runs/car_damage
+name: yolo26s_finetune_768
+exist_ok: false
+cache: false
+save: true
+save_period: 5
+plots: true
+
+# Low-learning-rate fine-tuning avoids forgetting the converged baseline.
+optimizer: AdamW
+lr0: 0.0001
+lrf: 0.20
+cos_lr: true
+weight_decay: 0.0005
+warmup_epochs: 0.0
+warmup_momentum: 0.9
+warmup_bias_lr: 0.0
+cls: 0.75
+
+# Mild augmentation preserves subtle, narrow crack structure.
+hsv_h: 0.005
+hsv_s: 0.20
+hsv_v: 0.15
+degrees: 3.0
+translate: 0.03
+scale: 0.10
+shear: 0.0
+perspective: 0.0
+flipud: 0.0
+fliplr: 0.5
+mosaic: 0.10
+mixup: 0.0
+close_mosaic: 10

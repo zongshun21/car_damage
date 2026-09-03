@@ -175,4 +175,3 @@ def check_dataset(
         class_names=config.names,
         splits=splits,
     )
-

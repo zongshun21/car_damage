@@ -5,6 +5,7 @@ __pycache__/
 *.egg-info/
 build/
 dist/
+release/
 
 # Dataset and generated artifacts are local-only.
 车损车身数据集/
@@ -13,4 +14,5 @@ runs/
 *.pt
 *.onnx
 
-
+# Published weight parts are versioned under models/weights_parts/.
+# restore_models.ps1 reconstructs the ignored .pt files byte-for-byte.
