@@ -28,6 +28,7 @@ $rootFiles = @(
     "README.md",
     "environment.yml",
     "setup_gui_env.ps1",
+    "restore_models.ps1",
     "check_gui_env.ps1",
     "start_gui.ps1"
 )
