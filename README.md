@@ -7,7 +7,7 @@
 
 ![GUI 平台](assets/gui_platform.png)
 
-![中文检测结果](assets/用户附件.png)
+![缺陷检测和推理结果页面](assets/用户附件.png)
 
 ## 1. 这个仓库适合谁
 
