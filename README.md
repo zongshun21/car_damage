@@ -108,11 +108,16 @@ car_damage/
 - `runs/`：训练权重、曲线、混淆矩阵和推理结果。
 - `release/`：GUI 发布压缩包。
 
-## 6. 数据集不在仓库中的原因
+## 6. 下载并放置训练数据集
 
-原始数据集包含 5,700 张图片，约 168.5 MB。它没有随仓库公开，原因是图片再分发需要确认授权，而且代码仓库不适合长期存放原始训练数据。
+原始三分类数据集包含 5,700 张图片，压缩包约 168.65 MB。图片文件不直接存入 Git 仓库，可通过百度网盘下载：
 
-准备数据后应放成：
+- 文件名：`car_damage_dataset_3class_5700_20260903.zip`
+- [百度网盘下载链接](https://pan.baidu.com/s/1sgKaATWPFbX11l_Z2tiHBA?pwd=may6)
+- 提取码：`may6`
+- SHA256：`91a8fe8eff1e6bb42a9f0e06b7f1bf8fa2d3c22c0320fd3fbb479f5351b45fa1`
+
+把 ZIP 下载到项目根目录并解压。压缩包已经包含顶层目录 `车损车身数据集`，解压后应为：
 
 ```text
 车损车身数据集/
@@ -124,7 +129,24 @@ car_damage/
    └─ labels/             # 同名 YOLO txt 标签
 ```
 
+在 PowerShell 中校验下载文件：
+
+```powershell
+Get-FileHash .\car_damage_dataset_3class_5700_20260903.zip -Algorithm SHA256
+```
+
+哈希一致后运行数据检查：
+
+```powershell
+conda activate car_damage_yolo26
+python scripts/check_dataset.py --data configs/data.yaml
+```
+
+检查结果应包含 5,700 张图片，其中 train 4,560 张、val 1,140 张，并且没有阻塞训练的错误。三条零面积框警告会由项目处理流程过滤，详情见数据检查教程。
+
 使用其他数据集也可以，但必须修改 `configs/data.yaml` 中的路径和类别。只有使用相同数据与训练设置，才可能接近仓库记录的指标。
+
+数据仅用于本项目复现与学习。使用者仍需自行确认数据来源、隐私及再分发许可；网盘链接失效时请在仓库提交 Issue。
 
 ## 7. 完整教程导航
 
